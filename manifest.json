@@ -1,0 +1,44 @@
+{
+    "name": "Homarr",
+    "id": "homarr",
+    "packaging_format": 1,
+    "description": {
+        "en": "Customizable browser's home page to interact with your homeserver's Docker containers",
+        "fr": "Customizable browser's home page to interact with your homeserver's Docker containers"
+    },
+    "version": "0.10.7~ynh1",
+    "url": "https://homarr.dev/",
+    "upstream": {
+        "license": "MIT",
+        "website": "https://homarr.dev/",
+        "demo": "https://demo.example.com",
+        "admindoc": "https://yunohost.org/packaging_apps",
+        "userdoc": "https://yunohost.org/apps",
+        "code": "https://github.com/ajnart/homarr"
+    },
+    "license": "MIT",
+    "maintainer": {
+        "name": "",
+        "email": ""
+    },
+    "requirements": {
+        "yunohost": ">= 11.0.9"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx"
+    ],
+    "arguments": {
+        "install": [
+            {
+                "name": "domain",
+                "type": "domain"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": true
+            }
+        ]
+    }
+}
