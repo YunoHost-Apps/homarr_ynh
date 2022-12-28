@@ -15,15 +15,17 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Some long and extensive description of what the app is and does, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Homarr is a simple and lightweight homepage for your server, that helps you easily access all of your services in one place.
+It integrates with the services you use to display information on the homepage (E.g. Show upcoming Sonarr/Radarr releases).
 
-### Features
+###Features
 
-- Ut enim ad minim veniam, quis nostrud exercitation ullamco ;
-- Laboris nisi ut aliquip ex ea commodo consequat ;
-- Duis aute irure dolor in reprehenderit in voluptate ;
-- Velit esse cillum dolore eu fugiat nulla pariatur ;
-- Excepteur sint occaecat cupidatat non proident, sunt in culpa."
+    Integrates with services you use.
+    Search the web directly from your homepage.
+    Real-time status indicator for every service.
+    Automatically finds icons while you type the name of a service.
+    Widgets that can display all types of information.
+    Very light-weight and fast.
 
 
 **Version incluse :** 0.10.7~ynh1
@@ -32,22 +34,7 @@ Some long and extensive description of what the app is and does, lorem ipsum dol
 
 ## Captures d'écran
 
-![Capture d'écran de Homarr](./doc/screenshots/example.jpg)
-
-## Avertissements / informations importantes
-
-* Any known limitations, constrains or stuff not working, such as (but not limited to):
-    * requiring a full dedicated domain ?
-    * architectures not supported ?
-    * not-working single-sign on or LDAP integration ?
-    * the app requires an important amount of RAM / disk / .. to install or to work properly
-    * etc...
-
-* Other infos that people should be aware of, such as:
-    * any specific step to perform after installing (such as manually finishing the install, specific admin credentials, ...)
-    * how to configure / administrate the application if it ain't obvious
-    * upgrade process / specificities / things to be aware of ?
-    * security considerations ?
+![Capture d'écran de Homarr](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
