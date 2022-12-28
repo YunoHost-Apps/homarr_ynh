@@ -20,17 +20,17 @@ It integrates with the services you use to display information on the homepage (
 
 ###Features
 
-    Integrates with services you use.
-    Search the web directly from your homepage.
-    Real-time status indicator for every service.
-    Automatically finds icons while you type the name of a service.
-    Widgets that can display all types of information.
-    Very light-weight and fast.
+- Integrates with services you use.
+- Search the web directly from your homepage.
+- Real-time status indicator for every service.
+- Automatically finds icons while you type the name of a service.
+- Widgets that can display all types of information.
+- Very light-weight and fast.
 
 
 **Version incluse :** 0.10.7~ynh1
 
-**Démo :** https://demo.example.com
+**Démo :** https://homarr.ajnart.fr/fr
 
 ## Captures d'écran
 
@@ -39,8 +39,8 @@ It integrates with the services you use to display information on the homepage (
 ## Documentations et ressources
 
 * Site officiel de l'app : <https://homarr.dev/>
-* Documentation officielle utilisateur : <https://yunohost.org/apps>
-* Documentation officielle de l'admin : <https://yunohost.org/packaging_apps>
+* Documentation officielle utilisateur : <https://homarr.dev/docs/about>
+* Documentation officielle de l'admin : <https://homarr.dev/docs/about>
 * Dépôt de code officiel de l'app : <https://github.com/ajnart/homarr>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_homarr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
