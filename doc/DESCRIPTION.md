@@ -3,9 +3,9 @@ It integrates with the services you use to display information on the homepage (
 
 ###Features
 
-    Integrates with services you use.
-    Search the web directly from your homepage.
-    Real-time status indicator for every service.
-    Automatically finds icons while you type the name of a service.
-    Widgets that can display all types of information.
-    Very light-weight and fast.
+- Integrates with services you use.
+- Search the web directly from your homepage.
+- Real-time status indicator for every service.
+- Automatically finds icons while you type the name of a service.
+- Widgets that can display all types of information.
+- Very light-weight and fast.
