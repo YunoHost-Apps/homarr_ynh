@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 Homarr is a simple and lightweight homepage for your server, that helps you easily access all of your services in one place.
 It integrates with the services you use to display information on the homepage (E.g. Show upcoming Sonarr/Radarr releases).
 
-###Features
+### Features
 
 - Integrates with services you use.
 - Search the web directly from your homepage.
@@ -28,7 +28,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Shipped version:** 0.10.7~ynh1
+**Shipped version:** 0.10.7~ynh2
 
 **Demo:** https://homarr.ajnart.fr/fr
 
