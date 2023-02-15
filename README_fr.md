@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # Homarr pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/homarr.svg)](https://dash.yunohost.org/appci/app/homarr) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/homarr.svg)](https://dash.yunohost.org/appci/app/homarr) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+
 [![Installer Homarr avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Homarr rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Homarr rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Homarr is a simple and lightweight homepage for your server, that helps you easily access all of your services in one place.
 It integrates with the services you use to display information on the homepage (E.g. Show upcoming Sonarr/Radarr releases).
@@ -28,20 +29,20 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Version incluse :** 0.10.7~ynh2
+**Version incluse :** 0.11.4~ynh1
 
 **Démo :** https://homarr.ajnart.fr/fr
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Homarr](./doc/screenshots/screenshot.png)
+![Capture d’écran de Homarr](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://homarr.dev/>
+* Site officiel de l’app : <https://homarr.dev/>
 * Documentation officielle utilisateur : <https://homarr.dev/docs/about>
-* Documentation officielle de l'admin : <https://homarr.dev/docs/about>
-* Dépôt de code officiel de l'app : <https://github.com/ajnart/homarr>
+* Documentation officielle de l’admin : <https://homarr.dev/docs/about>
+* Dépôt de code officiel de l’app : <https://github.com/ajnart/homarr>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_homarr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 
@@ -57,4 +58,4 @@ ou
 sudo yunohost app upgrade homarr -u https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
