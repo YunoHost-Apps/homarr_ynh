@@ -1,7 +1,0 @@
-SOURCE_URL=https://github.com/ajnart/homarr/archive/refs/tags/v0.11.4.tar.gz
-SOURCE_SUM=c716a204ba48b50589797a1e31a6b097c11e53d81da6e8e82be6dcb1ce504de6
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=
-SOURCE_EXTRACT=true
