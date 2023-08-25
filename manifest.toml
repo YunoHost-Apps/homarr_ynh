@@ -18,7 +18,7 @@ userdoc = "https://homarr.dev/docs/about"
 code = "https://github.com/ajnart/homarr"
 
 [integration]
-yunohost = ">= 11.1.19"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -30,7 +30,6 @@ ram.runtime = "50M"
 [install]
     [install.domain]
     type = "domain"
-    full_domain = true
 
     [install.init_main_permission]
     type = "group"
