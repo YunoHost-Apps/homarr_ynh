@@ -16,17 +16,16 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Homarr is a simple and lightweight homepage for your server, that helps you easily access all of your services in one place.
-It integrates with the services you use to display information on the homepage (E.g. Show upcoming Sonarr/Radarr releases).
+Homarr est une page d'accueil simple et légère pour votre serveur, qui vous aide à accéder facilement à tous vos services en un seul endroit.
+Il s'intègre aux services que vous utilisez pour afficher des informations sur la page d'accueil (par exemple, afficher les prochaines versions de Sonarr/Radar).
 
-### Features
+### Caractéristiques
 
-- Integrates with services you use.
-- Search the web directly from your homepage.
-- Real-time status indicator for every service.
-- Automatically finds icons while you type the name of a service.
-- Widgets that can display all types of information.
-- Very light-weight and fast.
+- S'intègre aux services que vous utilisez.
+- Recherchez sur le Web directement depuis votre page d'accueil.
+- Indicateur d'état en temps réel pour chaque service.
+- Recherche automatiquement les icônes pendant que vous tapez le nom d'un service.
+- Des widgets pouvant afficher tous types d'informations.
 
 
 **Version incluse :** 0.13.4~ynh1
