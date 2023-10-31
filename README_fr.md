@@ -43,7 +43,7 @@ It integrates with the services you use to display information on the homepage (
 * Documentation officielle utilisateur : <https://homarr.dev/docs/about>
 * Documentation officielle de l’admin : <https://homarr.dev/docs/about>
 * Dépôt de code officiel de l’app : <https://github.com/ajnart/homarr>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_homarr>
+* YunoHost Store: <https://apps.yunohost.org/app/homarr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 
 ## Informations pour les développeurs
