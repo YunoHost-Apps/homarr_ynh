@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "0.13.4~ynh1"
+version = "0.14.2~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -21,10 +21,13 @@ code = "https://github.com/ajnart/homarr"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
-ram.build = "50M"
+ram.build = "1500M"
 ram.runtime = "50M"
 
 [install]
@@ -37,8 +40,8 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/ajnart/homarr/archive/refs/tags/v0.13.4.tar.gz"
-        sha256 = "bddeecf22f40743ff7446bc8dc8427539788425671147029a33b088aaec5967b"
+        url = "https://github.com/ajnart/homarr/archive/refs/tags/v0.14.2.tar.gz"
+        sha256 = "c8e30aaf9ccfd5c5cfa11965cbb7d0c4615c915afca73f19b0b64c8fa3abd327"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
@@ -51,7 +54,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = ""
+    packages = "sqlite3"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"

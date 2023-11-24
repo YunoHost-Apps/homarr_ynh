@@ -9,6 +9,9 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+secret=$(ynh_string_random --length=24)
+timezone=$(cat /etc/timezone)
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -36,6 +39,22 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
+env_path="$PATH"
+# Create a dedicated systemd config
+ynh_add_systemd_config
+
+yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
+
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
+
+ynh_add_config --template=".env" --destination="$install_dir/.env"
+
+chmod 400 "$install_dir/.env"
+chown $app:$app "$install_dir/.env"
+
 #=================================================
 # INSTALL HOMARR
 #=================================================
@@ -45,23 +64,8 @@ pushd $install_dir
  	ynh_use_nodejs
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn install
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production yarn build
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH  yarn db:migrate
 popd
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=1
-
-env_path="$PATH"
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
-
-yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
