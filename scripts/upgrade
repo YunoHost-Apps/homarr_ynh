@@ -58,7 +58,7 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#env_path="$PATH"
+env_path="$PATH"
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
