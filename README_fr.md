@@ -27,10 +27,9 @@ Il s'intègre aux services que vous utilisez pour afficher des informations sur 
 - Recherche automatiquement les icônes pendant que vous tapez le nom d'un service.
 - Des widgets pouvant afficher tous types d'informations.
 
+**Version incluse :** 0.15.1~ynh1
 
-**Version incluse :** 0.15.0~ynh1
-
-**Démo :** https://homarr.ajnart.fr/fr
+**Démo :** <https://homarr.ajnart.fr/fr>
 
 ## Captures d’écran
 
@@ -38,12 +37,12 @@ Il s'intègre aux services que vous utilisez pour afficher des informations sur 
 
 ## Documentations et ressources
 
-* Site officiel de l’app : <https://homarr.dev/>
-* Documentation officielle utilisateur : <https://homarr.dev/docs/about>
-* Documentation officielle de l’admin : <https://homarr.dev/docs/about>
-* Dépôt de code officiel de l’app : <https://github.com/ajnart/homarr>
-* YunoHost Store: <https://apps.yunohost.org/app/homarr>
-* Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
+- Site officiel de l’app : <https://homarr.dev/>
+- Documentation officielle utilisateur : <https://homarr.dev/docs/about>
+- Documentation officielle de l’admin : <https://homarr.dev/docs/about>
+- Dépôt de code officiel de l’app : <https://github.com/ajnart/homarr>
+- YunoHost Store : <https://apps.yunohost.org/app/homarr>
+- Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 
 ## Informations pour les développeurs
 
@@ -51,7 +50,7 @@ Merci de faire vos pull request sur la [branche testing](https://github.com/Yuno
 
 Pour essayer la branche testing, procédez comme suit.
 
-``` bash
+```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug
 ou
 sudo yunohost app upgrade homarr -u https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug
