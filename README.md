@@ -28,10 +28,9 @@ It integrates with the services you use to display information on the homepage (
 - Widgets that can display all types of information.
 - Very light-weight and fast.
 
+**Shipped version:** 0.15.2~ynh1
 
-**Shipped version:** 0.15.0~ynh1
-
-**Demo:** https://homarr.ajnart.fr/fr
+**Demo:** <https://homarr.ajnart.fr/fr>
 
 ## Screenshots
 
@@ -39,12 +38,12 @@ It integrates with the services you use to display information on the homepage (
 
 ## Documentation and resources
 
-* Official app website: <https://homarr.dev/>
-* Official user documentation: <https://homarr.dev/docs/about>
-* Official admin documentation: <https://homarr.dev/docs/about>
-* Upstream app code repository: <https://github.com/ajnart/homarr>
-* YunoHost Store: <https://apps.yunohost.org/app/homarr>
-* Report a bug: <https://github.com/YunoHost-Apps/homarr_ynh/issues>
+- Official app website: <https://homarr.dev/>
+- Official user documentation: <https://homarr.dev/docs/about>
+- Official admin documentation: <https://homarr.dev/docs/about>
+- Upstream app code repository: <https://github.com/ajnart/homarr>
+- YunoHost Store: <https://apps.yunohost.org/app/homarr>
+- Report a bug: <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 
 ## Developer info
 
@@ -52,7 +51,7 @@ Please send your pull request to the [testing branch](https://github.com/YunoHos
 
 To try the testing branch, please proceed like that.
 
-``` bash
+```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade homarr -u https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug
