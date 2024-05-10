@@ -9,7 +9,7 @@ It shall NOT be edited by hand.
 
 [![Install Homarr with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
-*[Read this README is other languages.](./ALL_README.md)*
+*[Read this README in other languages.](./ALL_README.md)*
 
 > *This package allows you to install Homarr quickly and simply on a YunoHost server.*  
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
@@ -29,7 +29,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Shipped version:** 0.15.0~ynh1
+**Shipped version:** 0.15.3~ynh1
 
 **Demo:** <https://homarr.ajnart.fr/fr>
 
