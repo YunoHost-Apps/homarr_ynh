@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "0.15.3~ynh1"
+version = "0.15.3~ynh2"
 
 maintainers = ["eric_G"]
 
@@ -41,7 +41,7 @@ ram.runtime = "50M"
 [resources]
         [resources.sources.main]
         url = "https://github.com/ajnart/homarr/archive/refs/tags/v0.15.3.tar.gz"
-        sha256 = "95a9e49a8391d41edf5fb63b07a18cee34448f003235af0f368e14cc5c44d4c8"
+        sha256 = "f5f9b8316b7a0a03e9715acae1785948835c6a89ed5e0de2dd9ca566a5119ee4"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
