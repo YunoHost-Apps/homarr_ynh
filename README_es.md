@@ -48,7 +48,7 @@ It integrates with the services you use to display information on the homepage (
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/homarr_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/homarr_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
