@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Homarr YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/homarr.svg)](https://dash.yunohost.org/appci/app/homarr) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/homarr.svg)](https://ci-apps.yunohost.org/ci/apps/homarr/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
 
 [![Instalatu Homarr YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
@@ -29,7 +29,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Paketatutako bertsioa:** 0.15.3~ynh3
+**Paketatutako bertsioa:** 0.15.4~ynh1
 
 **Demoa:** <https://homarr.ajnart.fr/fr>
 

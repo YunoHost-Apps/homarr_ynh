@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -13,77 +7,64 @@ secret=$(ynh_string_random --length=24)
 timezone=$(cat /etc/timezone)
 
 #=================================================
-# STANDARD UPGRADE STEPS
-#=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
+ynh_systemctl --service=$app --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression "Upgrading source files..."
 
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1
-
-chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+ynh_setup_source --dest_dir="$install_dir" --full_replace
 
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=1
+ynh_script_progression "Upgrading dependencies..."
 
-# Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_nodejs_install
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
-# Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
-# Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression "Adding $app's configuration..."
 
-ynh_add_config --template=".env" --destination="$install_dir/.env"
-
-chmod 400 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
 # INSTALL HOMARR
 #=================================================
-ynh_script_progression --message="Building the app..." --weight=20
+ynh_script_progression "Building the app..."
 
 pushd $install_dir
- 	ynh_use_nodejs
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn install
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production yarn build
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH  yarn db:migrate
+	ynh_hide_warnings ynh_exec_as_app yarn install
+	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production yarn build
+	ynh_hide_warnings ynh_exec_as_app yarn db:migrate
 popd
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=1
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start" --log_path="systemd"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"

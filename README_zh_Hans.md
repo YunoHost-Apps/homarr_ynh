@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Homarr
 
-[![集成程度](https://dash.yunohost.org/integration/homarr.svg)](https://dash.yunohost.org/appci/app/homarr) ![工作状态](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/homarr.svg)](https://ci-apps.yunohost.org/ci/apps/homarr/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
 
 [![使用 YunoHost 安装 Homarr](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
@@ -29,7 +29,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**分发版本：** 0.15.3~ynh3
+**分发版本：** 0.15.4~ynh1
 
 **演示：** <https://homarr.ajnart.fr/fr>
 

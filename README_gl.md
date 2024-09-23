@@ -5,7 +5,7 @@ NON debe editarse manualmente.
 
 # Homarr para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/homarr.svg)](https://dash.yunohost.org/appci/app/homarr) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/homarr.svg)](https://ci-apps.yunohost.org/ci/apps/homarr/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
 
 [![Instalar Homarr con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
@@ -29,7 +29,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Versión proporcionada:** 0.15.3~ynh3
+**Versión proporcionada:** 0.15.4~ynh1
 
 **Demo:** <https://homarr.ajnart.fr/fr>
 
