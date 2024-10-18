@@ -28,7 +28,7 @@ Il s'intègre aux services que vous utilisez pour afficher des informations sur 
 - Des widgets pouvant afficher tous types d'informations.
 
 
-**Version incluse :** 0.15.4~ynh1
+**Version incluse :** 0.15.6~ynh1
 
 **Démo :** <https://homarr.ajnart.fr/fr>
 
