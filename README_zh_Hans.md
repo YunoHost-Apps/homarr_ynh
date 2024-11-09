@@ -29,7 +29,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**分发版本：** 0.15.7~ynh1
+**分发版本：** 0.15.7~ynh2
 
 **演示：** <https://homarr.ajnart.fr/fr>
 
