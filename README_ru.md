@@ -5,7 +5,9 @@
 
 # Homarr для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/homarr.svg)](https://ci-apps.yunohost.org/ci/apps/homarr/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/homarr)](https://ci-apps.yunohost.org/ci/apps/homarr/)
+![Состояние работы](https://apps.yunohost.org/badge/state/homarr)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/homarr)
 
 [![Установите Homarr с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
@@ -29,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Поставляемая версия:** 0.15.7~ynh2
+**Поставляемая версия:** 0.15.9~ynh1
 
 **Демо-версия:** <https://homarr.ajnart.fr/fr>
 

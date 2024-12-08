@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Homarr untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/homarr.svg)](https://ci-apps.yunohost.org/ci/apps/homarr/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/homarr.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/homarr.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/homarr)](https://ci-apps.yunohost.org/ci/apps/homarr/)
+![Status kerja](https://apps.yunohost.org/badge/state/homarr)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/homarr)
 
 [![Pasang Homarr dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=homarr)
 
@@ -29,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Versi terkirim:** 0.15.7~ynh2
+**Versi terkirim:** 0.15.9~ynh1
 
 **Demo:** <https://homarr.ajnart.fr/fr>
 
