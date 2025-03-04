@@ -30,7 +30,7 @@ Il s'intègre aux services que vous utilisez pour afficher des informations sur 
 - Des widgets pouvant afficher tous types d'informations.
 
 
-**Version incluse :** 0.15.10~ynh1
+**Version incluse :** 1.8.0~ynh1
 
 **Démo :** <https://homarr.ajnart.fr/fr>
 
@@ -43,7 +43,7 @@ Il s'intègre aux services que vous utilisez pour afficher des informations sur 
 - Site officiel de l’app : <https://homarr.dev/>
 - Documentation officielle utilisateur : <https://homarr.dev/docs/about>
 - Documentation officielle de l’admin : <https://homarr.dev/docs/about>
-- Dépôt de code officiel de l’app : <https://github.com/ajnart/homarr>
+- Dépôt de code officiel de l’app : <https://github.com/homarr-labs/homarr>
 - YunoHost Store : <https://apps.yunohost.org/app/homarr>
 - Signaler un bug : <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 

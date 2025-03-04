@@ -31,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**分发版本：** 0.15.10~ynh1
+**分发版本：** 1.8.0~ynh1
 
 **演示：** <https://homarr.ajnart.fr/fr>
 
@@ -44,7 +44,7 @@ It integrates with the services you use to display information on the homepage (
 - 官方应用网站： <https://homarr.dev/>
 - 官方用户文档： <https://homarr.dev/docs/about>
 - 官方管理文档： <https://homarr.dev/docs/about>
-- 上游应用代码库： <https://github.com/ajnart/homarr>
+- 上游应用代码库： <https://github.com/homarr-labs/homarr>
 - YunoHost 商店： <https://apps.yunohost.org/app/homarr>
 - 报告 bug： <https://github.com/YunoHost-Apps/homarr_ynh/issues>
 
