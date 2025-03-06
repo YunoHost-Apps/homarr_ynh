@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "homarr"
@@ -24,6 +26,7 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
+
 sso = false
 
 disk = "50M"
@@ -39,12 +42,10 @@ ram.runtime = "50M"
     default = "visitors"
 
 [resources]
-        [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.9.0.tar.gz"
-        sha256 = "8fb86f47bec67f79f79aef9b50df9de007507e2a4185ebd814e63aa6635ed692"
-        autoupdate.strategy = "latest_github_tag"
-
-    [resources.ports]
+    [resources.sources.main]
+    url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.9.0.tar.gz"
+    sha256 = "8fb86f47bec67f79f79aef9b50df9de007507e2a4185ebd814e63aa6635ed692"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
@@ -52,6 +53,8 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+
+    [resources.ports]
 
     [resources.apt]
     packages = "sqlite3"
