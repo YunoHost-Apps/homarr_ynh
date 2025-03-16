@@ -51,8 +51,6 @@ ram.runtime = "50M"
 
     [resources.install_dir]
 
-    [resources.data_dir]
-
     [resources.permissions]
     main.url = "/"
 
@@ -61,4 +59,4 @@ ram.runtime = "50M"
     websockets.default = 3001
 
     [resources.apt]
-    packages = "sqlite3, redis-server, gettext, openssl"
+    packages = "sqlite3, redis-server"
