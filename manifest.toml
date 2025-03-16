@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "homarr"
@@ -5,7 +7,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "1.8.0~ynh1"
+version = "1.11.0~ynh1"
 
 maintainers = []
 
@@ -24,6 +26,7 @@ architectures = "all"
 multi_instance = true
 
 ldap = false
+
 sso = false
 
 disk = "50M"
@@ -39,22 +42,23 @@ ram.runtime = "50M"
     default = "visitors"
 
 [resources]
-        [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.8.0.tar.gz"
-        sha256 = "3c139e59d6b7a86801824764507b3ab54af156c9911703705186780bb6f9e8d3"
-        autoupdate.strategy = "latest_github_tag"
-
-    [resources.ports]
+    [resources.sources.main]
+    url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.11.0.tar.gz"
+    sha256 = "fa3f0172ced5323c488f7cea9a7e920928aa048d2e45430b355e15e857d51337"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
     [resources.install_dir]
 
+    [resources.data_dir]
+
     [resources.permissions]
     main.url = "/"
 
+    [resources.ports]
+    main.default = 3000
+    websockets.default = 3001
+
     [resources.apt]
-    packages = "sqlite3"
-    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
-    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
-    extras.yarn.packages = "yarn"
+    packages = "sqlite3, redis-server, gettext, openssl"

@@ -1,23 +1,33 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
-
-secret=$(ynh_string_random --length=24)
-timezone=$(cat /etc/timezone)
 
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action="stop" --log_path="systemd"
+ynh_systemctl --service="$app" --action="stop" --log_path="/var/log/$app/$app.log"
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring downward compatibility..."
+
+ynh_app_setting_set_default --key=auth_secret --value="$(ynh_string_random --length=32)"
+ynh_app_setting_set_default --key=secret_encryption_key --value="$(ynh_string_random --length=64 --filter="0-9a-f")"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
+# Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
 
 #=================================================
@@ -28,6 +38,13 @@ ynh_script_progression "Upgrading dependencies..."
 ynh_nodejs_install
 
 #=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression "Updating $app's configuration files..."
+
+#ynh_config_add --template=".env" --destination="$install_dir/.env"
+
+#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
@@ -35,15 +52,9 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_nginx
 
 ynh_config_add_systemd
+yunohost service add "$app" --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
-yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-#ynh_script_progression "Adding $app's configuration..."
-
-#ynh_config_add --template=".env" --destination="$install_dir/.env"
+ynh_config_add_logrotate
 
 #=================================================
 # INSTALL HOMARR
@@ -51,9 +62,13 @@ yunohost service add $app --description="Customizable browser's home page" --log
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-	ynh_hide_warnings ynh_exec_as_app yarn install
-	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production yarn build
-	ynh_hide_warnings ynh_exec_as_app yarn db:migrate
+	ynh_hide_warnings npm install -g corepack@0.31.0
+	ynh_hide_warnings ynh_exec_as_app corepack enable pnpm
+	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
+	ynh_hide_warnings ynh_exec_as_app pnpm db:migration:sqlite:run
+	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production NODE_OPTIONS="--max-old-space-size=4096" pnpm build
+	ynh_hide_warnings ynh_exec_as_app mkdir -p "$install_dir/build/"
+	ynh_hide_warnings ynh_exec_as_app cp -a "$install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node" "$install_dir/build/better_sqlite3.node"
 popd
 
 #=================================================
@@ -61,7 +76,7 @@ popd
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
+ynh_systemctl --service="$app" --action="start" --log_path="/var/log/$app/$app.log"
 
 #=================================================
 # END OF SCRIPT
