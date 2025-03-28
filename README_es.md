@@ -3,7 +3,7 @@ Este archivo README esta generado automaticamente<https://github.com/YunoHost/ap
 No se debe editar a mano.
 -->
 
-# Homarr para Yunohost
+# Homarr para YunoHost
 
 [![Nivel de integración](https://apps.yunohost.org/badge/integration/homarr)](https://ci-apps.yunohost.org/ci/apps/homarr/)
 ![Estado funcional](https://apps.yunohost.org/badge/state/homarr)
@@ -31,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Versión actual:** 1.8.0~ynh1
+**Versión actual:** 1.13.1~ynh1
 
 **Demo:** <https://homarr.ajnart.fr/fr>
 
