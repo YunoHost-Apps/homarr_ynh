@@ -31,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Paketatutako bertsioa:** 1.8.0~ynh1
+**Paketatutako bertsioa:** 1.13.1~ynh1
 
 **Demoa:** <https://homarr.ajnart.fr/fr>
 
@@ -52,7 +52,7 @@ It integrates with the services you use to display information on the homepage (
 
 Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/homarr_ynh/tree/testing).
 
-`testing` abarra probatzeko, ondorengoa egin:
+`testing` abarra probatzeko, honakoa egin:
 
 ```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/homarr_ynh/tree/testing --debug

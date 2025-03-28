@@ -31,7 +31,7 @@ It integrates with the services you use to display information on the homepage (
 - Very light-weight and fast.
 
 
-**Shipped version:** 1.8.0~ynh1
+**Shipped version:** 1.13.1~ynh1
 
 **Demo:** <https://homarr.ajnart.fr/fr>
 
