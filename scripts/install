@@ -12,6 +12,7 @@ timezone=$(timedatectl show --value --property=Timezone)
 ynh_script_progression "Installing dependencies..."
 
 ynh_nodejs_install
+npm install corepack
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
