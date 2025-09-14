@@ -5,6 +5,9 @@ source /usr/share/yunohost/helpers
 
 secret=$(ynh_string_random --length=24)
 timezone=$(timedatectl show --value --property=Timezone)
+auth_secret=$(ynh_string_random --length=32)
+secret_encryption_key=$(ynh_string_random --length=32)
+cron_job_api_key=$(ynh_string_random --length=32)
 
 #=================================================
 # INSTALL DEPENDENCIES
