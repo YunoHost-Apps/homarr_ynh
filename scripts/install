@@ -47,7 +47,7 @@ pushd $install_dir
 	ynh_hide_warnings corepack enable && corepack prepare pnpm@latest --activate
 	ynh_hide_warnings ynh_exec_as_app pnpm install
 	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production pnpm build
-	ynh_hide_warnings ynh_exec_as_app pnpm db:migrate
+	ynh_hide_warnings ynh_exec_as_app pnpm db:migration:sqlite:run
 popd
 
 #=================================================
