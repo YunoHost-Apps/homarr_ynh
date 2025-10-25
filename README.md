@@ -11,9 +11,7 @@ It shall NOT be edited by hand.
 Customizable browser's home page to interact with your homeserver's Docker containers
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://homarr.dev/)
-[![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://homarr.ajnart.fr/fr)
 [![Version: 1.42.1~ynh1](https://img.shields.io/badge/Version-1.42.1~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/homarr/)
-
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/homarr"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
