@@ -12,9 +12,8 @@ maintainers = []
 [upstream]
 license = "MIT"
 website = "https://homarr.dev/"
-demo = "https://homarr.ajnart.fr/fr"
-admindoc = "https://homarr.dev/docs/about"
-userdoc = "https://homarr.dev/docs/about"
+admindoc = "https://homarr.dev/docs/getting-started"
+userdoc = "https://homarr.dev/docs/category/management"
 code = "https://github.com/homarr-labs/homarr"
 
 [integration]
@@ -42,6 +41,7 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.42.1.tar.gz"
         sha256 = "b58ce47a975f3388df45518809107aff011cc98fc9eaa7d9bdfb645c30b1a291"
+
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
