@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "1.37.0~ynh1"
+version = "1.42.1~ynh1"
 
 maintainers = []
 
@@ -39,8 +39,9 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.37.0.tar.gz"
-        sha256 = "d44463229480710230e195f61d271781f822bbf4e170f4012ee847689eefcc25"
+        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.42.1.tar.gz"
+        sha256 = "b58ce47a975f3388df45518809107aff011cc98fc9eaa7d9bdfb645c30b1a291"
+
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
@@ -54,3 +55,9 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "sqlite3"
+    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
+    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
+    extras.yarn.packages = "yarn"
+
+    [resources.nodejs]
+    version = "22"
