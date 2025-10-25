@@ -12,9 +12,8 @@ maintainers = []
 [upstream]
 license = "MIT"
 website = "https://homarr.dev/"
-demo = "https://homarr.ajnart.fr/fr"
-admindoc = "https://homarr.dev/docs/about"
-userdoc = "https://homarr.dev/docs/about"
+admindoc = "https://homarr.dev/docs/getting-started"
+userdoc = "https://homarr.dev/docs/category/management"
 code = "https://github.com/homarr-labs/homarr"
 
 [integration]
@@ -58,3 +57,6 @@ ram.runtime = "50M"
     extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
     extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
     extras.yarn.packages = "yarn"
+
+    [resources.nodejs]
+    version = "22"
