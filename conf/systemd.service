@@ -10,7 +10,7 @@ WorkingDirectory=__INSTALL_DIR__/
 Environment="PATH=__PATH_WITH_NODEJS__"
 Environment="NODE_ENV=production"
 Environment="PORT=__PORT__"
-ExecStart=/usr/bin/yarn start
+ExecStart=__NODEJS_DIR__/pnpm start
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=60s
