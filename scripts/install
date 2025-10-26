@@ -51,7 +51,6 @@ pushd $install_dir
     ynh_hide_warnings npm install -g corepack@latest
     ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@9 --activate
 
-    chown -R $app:$app $install_dir
     export NODE_OPTIONS="--max-old-space-size=3000"
 	ynh_hide_warnings ynh_exec_as_app pnpm install
 	ynh_hide_warnings pnpm run db:migration:sqlite:run
@@ -59,6 +58,8 @@ pushd $install_dir
     mkdir build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
 popd
+
+chown -R $app:$app $install_dir
 
 #=================================================
 # START SYSTEMD SERVICE
