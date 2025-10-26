@@ -58,7 +58,6 @@ pushd $install_dir
 	ynh_hide_warnings pnpm build
     mkdir build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
-    ynh_hide_warnings ynh_exec_as_app pnpm build
 popd
 
 #=================================================
