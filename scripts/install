@@ -13,7 +13,6 @@ cron_job_api_key=$(ynh_string_random --length=32)
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_nodejs_install
 npm install corepack
 
 #=================================================
@@ -50,14 +49,17 @@ pushd $install_dir
     ynh_hide_warnings corepack enable
     ynh_hide_warnings npm install -g corepack@latest
     ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@9 --activate
+    ynh_hide_warnings ynh_exec_as_app corepack prepare yarn@latest --activate
 
-	ynh_hide_warnings ynh_exec_as_app pnpm install
-	ynh_hide_warnings ynh_exec_as_app pnpm run db:migration:sqlite:run
-	ynh_hide_warnings ynh_exec_as_app pnpm build
+    export NODE_OPTIONS="--max-old-space-size=3000"
+	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
+	ynh_hide_warnings pnpm run db:migration:sqlite:run
+	ynh_hide_warnings pnpm build
     mkdir build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
-    ynh_hide_warnings ynh_exec_as_app pnpm build
 popd
+
+chown -R $app:$app $install_dir
 
 #=================================================
 # START SYSTEMD SERVICE
