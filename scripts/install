@@ -13,7 +13,6 @@ cron_job_api_key=$(ynh_string_random --length=32)
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-ynh_nodejs_install
 npm install corepack
 
 #=================================================
@@ -53,7 +52,7 @@ pushd $install_dir
     ynh_hide_warnings ynh_exec_as_app corepack prepare yarn@latest --activate
 
     export NODE_OPTIONS="--max-old-space-size=3000"
-	ynh_hide_warnings ynh_exec_as_app pnpm install
+	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
 	ynh_hide_warnings pnpm run db:migration:sqlite:run
 	ynh_hide_warnings pnpm build
     mkdir build

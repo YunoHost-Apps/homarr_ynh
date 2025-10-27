@@ -21,13 +21,6 @@ ynh_script_progression "Upgrading source files..."
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
 
 #=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression "Upgrading dependencies..."
-
-ynh_nodejs_install
-
-#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
