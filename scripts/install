@@ -48,14 +48,14 @@ ynh_script_progression "Building the app..."
 pushd $install_dir
     ynh_hide_warnings corepack enable
     ynh_hide_warnings npm install -g corepack@latest
-    ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@9 --activate
+    ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@10 --activate
     ynh_hide_warnings ynh_exec_as_app corepack prepare yarn@latest --activate
 
     export NODE_OPTIONS="--max-old-space-size=3000"
 	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
 	ynh_hide_warnings pnpm run db:migration:sqlite:run
 	ynh_hide_warnings pnpm build
-    mkdir build
+    mkdir -p build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
 popd
 
