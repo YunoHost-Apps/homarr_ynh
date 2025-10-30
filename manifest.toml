@@ -53,7 +53,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "sqlite3, redis-server" 
+    packages = "sqlite3, redis-server, ca-certificates" 
 
     [resources.nodejs]
     version = "22"
