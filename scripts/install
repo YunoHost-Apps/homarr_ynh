@@ -7,6 +7,7 @@ timezone=$(timedatectl show --value --property=Timezone)
 auth_secret=$(ynh_string_random --length=32)
 secret_encryption_key=$(ynh_string_random --length=64 --filter= 'a-f0-9')
 cron_job_api_key=$(ynh_string_random --length=32)
+redis_db=$(ynh_redis_get_free_db)
 
 #=================================================
 # INSTALL DEPENDENCIES
