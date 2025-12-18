@@ -14,7 +14,10 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-npm install -g pnpm
+# https://github.com/pnpm/pnpm/issues/8949
+npm install --global corepack@latest
+corepack enable pnpm
+corepack use pnpm@latest-10
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
