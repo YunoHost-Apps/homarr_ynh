@@ -56,4 +56,4 @@ ram.runtime = "50M"
     packages = "sqlite3, redis-server, ca-certificates" 
 
     [resources.nodejs]
-    version = "20"
+    version = "22"
