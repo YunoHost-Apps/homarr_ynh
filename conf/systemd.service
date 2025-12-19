@@ -10,7 +10,7 @@ WorkingDirectory=__INSTALL_DIR__/
 Environment="PATH=__PATH_WITH_NODEJS__"
 EnvironmentFile=__INSTALL_DIR__/.env
 Environment="NODE_OPTIONS=--max-old-space-size=4096"
-ExecStart=__NODEJS_DIR__/pnpm start
+ExecStart=__NODEJS_DIR__/node __INSTALL_DIR__/apps/nextjs/server.js
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=600s
