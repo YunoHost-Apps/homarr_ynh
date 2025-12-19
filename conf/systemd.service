@@ -9,10 +9,10 @@ Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
 Environment="PATH=__PATH_WITH_NODEJS__"
 EnvironmentFile=__INSTALL_DIR__/.env
-ExecStart=__NODEJS_DIR__/pnpm start
+ExecStart=NODE_OPTIONS="--max-old-space-size=4096" __NODEJS_DIR__/pnpm start
 Restart=on-failure
 RestartSec=5
-StartLimitInterval=60s
+StartLimitInterval=600s
 StartLimitBurst=3
 
 # Sandboxing options to harden security
