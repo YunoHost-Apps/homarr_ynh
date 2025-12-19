@@ -44,9 +44,13 @@ yunohost service add $app --description="Customizable browser's home page" --log
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-	ynh_hide_warnings ynh_exec_as_app yarn install
-	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production yarn build
-	ynh_hide_warnings ynh_exec_as_app yarn db:migrate
+	ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+
+    ynh_script_progression "Build the app..."
+
+    ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
+
+    ynh_exec_as_app pnpm run db:migration:sqlite:run
 popd
 
 #=================================================
@@ -54,7 +58,7 @@ popd
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start" --log_path="systemd"  --timeout=600
 
 #=================================================
 # END OF SCRIPT
