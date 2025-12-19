@@ -44,7 +44,9 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
-
+        main.default = 3000 
+        tasks.default = 3002
+        websocket.default = 3003
     [resources.system_user]
 
     [resources.install_dir]

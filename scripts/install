@@ -14,7 +14,11 @@ redis_db=$(ynh_redis_get_free_db)
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-npm install corepack
+#npm install -g pnpm
+# https://github.com/pnpm/pnpm/issues/8949
+npm install --global corepack@latest
+corepack enable pnpm
+corepack use pnpm@latest-10
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -22,17 +26,6 @@ npm install corepack
 ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-ynh_script_progression "Adding $app's configuration files..."
-
-ynh_config_add_nginx
-
-ynh_config_add_systemd
-
-yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -47,15 +40,20 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-    ynh_hide_warnings corepack enable
-    ynh_hide_warnings npm install -g corepack@latest
-    ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@10 --activate
-    ynh_hide_warnings ynh_exec_as_app corepack prepare yarn@latest --activate
+#	ynh_hide_warnings 
+ynh_script_progression "install the app..."
 
-    export NODE_OPTIONS="--max-old-space-size=3000"
-	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
-	ynh_hide_warnings pnpm build
-    ynh_hide_warnings pnpm run db:migration:sqlite:run
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install
+#	ynh_hide_warnings 
+
+ynh_script_progression "Build the app..."
+
+ynh_exec_as_app TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
+#    ynh_hide_warnings 
+
+ynh_script_progression "db migrate the app..."
+
+ynh_exec_as_app pnpm run db:migration:sqlite:run
     mkdir -p build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
 popd
@@ -66,6 +64,12 @@ chown -R $app:$app $install_dir
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
+
+ynh_config_add_nginx
+
+ynh_config_add_systemd
+
+yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 ynh_systemctl --service=$app --action="start"
 
