@@ -48,7 +48,7 @@ ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install
 
 ynh_script_progression "Build the app..."
 
-ynh_exec_as_app TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
 #    ynh_hide_warnings 
 
 ynh_script_progression "db migrate the app..."
@@ -66,13 +66,14 @@ chown -R $app:$app $install_dir
 ynh_script_progression "Applying websocket patch..."
 
 # This is the main file for websocket where the port is hardcoded to 3001
-ws_main_file="$install_dir/apps/websocket/src/main.ts"
+#ws_main_file="$install_dir/apps/websocket/src/main.ts"
 
 # Change the constant to retrieve the port from .env (this seems the way that js handles env vars), this should look like this :
 # const wss = new WebSocketServer({ port: parseInt(process.env.PORT_WEBSOCKET || "3001", 10), });
 # Here https://github.com/homarr-labs/homarr/blob/dev/apps/websocket/src/main.ts
 # Examples : https://github.com/homarr-labs/homarr/blob/f4bb90013a791be05c4502a0014b228b339f61d8/packages/core/src/infrastructure/db/env.ts#L11
-sed -i 's/port: 3001,/port: parseInt(process.env.PORT_WEBSOCKET || "3001", 10),/' "$ws_main_file"
+#sed -i 's/port: 3001,/port: parseInt(process.env.PORT_WEBSOCKET || "3001", 10),/' "$ws_main_file"
+# didn't work, something else breaks 
 
 #=================================================
 # START SYSTEMD SERVICE
