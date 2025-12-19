@@ -48,7 +48,7 @@ ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install
 
 ynh_script_progression "Build the app..."
 
-ynh_exec_as_app TURBO_TELEMETRY_DISABLED=1 pnpm build
+ynh_exec_as_app TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
 #    ynh_hide_warnings 
 
 ynh_script_progression "db migrate the app..."
