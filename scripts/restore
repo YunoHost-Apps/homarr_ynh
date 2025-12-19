@@ -9,6 +9,12 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
+ynh_script_progression "Reinstall pnpm..."
+
+npm install --global corepack@latest
+corepack enable pnpm
+corepack use pnpm@latest-10
+
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
