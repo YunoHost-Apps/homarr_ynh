@@ -32,7 +32,7 @@ yunohost service add $app --description="Customizable browser's home page" --log
 #=================================================
 ynh_script_progression "Reloading NGINX web server and $app's service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
+ynh_systemctl --service=$app --action="start" --log_path="systemd"  --timeout=600
 
 ynh_systemctl --service=nginx --action=reload
 
