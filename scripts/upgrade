@@ -29,16 +29,12 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 ynh_config_add_nginx
 
 ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
-
 ynh_config_add_systemd --service="$app-wss" --template="wss.service"
-
 ynh_config_add_systemd --service="$app" --template="systemd.service"
 
-ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
-
-ynh_config_add_systemd --service="$app-wss" --template="wss.service"
-
-ynh_config_add_systemd --service="$app" --template="systemd.service"
+yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
+yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
+yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
