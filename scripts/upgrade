@@ -34,6 +34,12 @@ ynh_config_add_systemd --service="$app-wss" --template="wss.service"
 
 ynh_config_add_systemd --service="$app" --template="systemd.service"
 
+ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
+
+ynh_config_add_systemd --service="$app-wss" --template="wss.service"
+
+ynh_config_add_systemd --service="$app" --template="systemd.service"
+
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
