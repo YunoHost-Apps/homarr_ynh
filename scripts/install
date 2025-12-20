@@ -9,6 +9,12 @@ secret_encryption_key=$(ynh_string_random --length=64 --filter= 'a-f0-9')
 cron_job_api_key=$(ynh_string_random --length=32)
 redis_db=$(ynh_redis_get_free_db)
 
+ynh_app_setting_set --key=secret --value=$secret
+ynh_app_setting_set --key=auth_secret --value=$auth_secret
+ynh_app_setting_set --key=secret_encryption_key --value=$secret_encryption_key
+ynh_app_setting_set --key=cron_job_api_key --value=$cron_job_api_key
+ynh_app_setting_set --key=redis_db --value=$redis_db
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -40,22 +46,21 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-#	ynh_hide_warnings 
+ 
 ynh_script_progression "install the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install
-#	ynh_hide_warnings 
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
 
 ynh_script_progression "Build the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
-#    ynh_hide_warnings 
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
 
 ynh_script_progression "db migrate the app..."
 
 ynh_exec_as_app pnpm run db:migration:sqlite:run
     mkdir -p build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
+    pnpm store prune
 popd
 
 chown -R $app:$app $install_dir
@@ -82,11 +87,25 @@ ynh_script_progression "Starting $app's systemd service..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+mkdir -p /var/log/$app 
+
+chown -R $app:$app /var/log/$app
+
+ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
+ynh_config_add_systemd --service="$app-wss" --template="wss.service"
+ynh_config_add_systemd --service="$app" --template="systemd.service"
+
+yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
+
+ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
+
+yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
+
+ynh_systemctl --service=$app-wss --action="start"  --timeout=600
 
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
-ynh_systemctl --service=$app --action="start"
+ynh_systemctl --service=$app --action="start"  --timeout=600
 
 #=================================================
 # END OF SCRIPT
