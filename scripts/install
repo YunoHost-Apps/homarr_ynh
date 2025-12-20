@@ -24,7 +24,7 @@ ynh_script_progression "Installing dependencies..."
 # https://github.com/pnpm/pnpm/issues/8949
 npm install --global corepack@latest
 corepack enable pnpm
-corepack use pnpm@latest-10
+corepack use pnpm@latest
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
