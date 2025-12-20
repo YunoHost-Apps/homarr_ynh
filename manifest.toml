@@ -20,7 +20,7 @@ code = "https://github.com/homarr-labs/homarr"
 yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
-multi_instance = true
+multi_instance = false
 
 ldap = false
 sso = false
@@ -44,7 +44,9 @@ ram.runtime = "50M"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
-
+        main.default = 3000 
+        tasks.default = 3002
+        websocket.default = 3003
     [resources.system_user]
 
     [resources.install_dir]

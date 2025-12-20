@@ -7,13 +7,24 @@ timezone=$(timedatectl show --value --property=Timezone)
 auth_secret=$(ynh_string_random --length=32)
 secret_encryption_key=$(ynh_string_random --length=64 --filter= 'a-f0-9')
 cron_job_api_key=$(ynh_string_random --length=32)
+redis_db=$(ynh_redis_get_free_db)
+
+ynh_app_setting_set --key=secret --value=$secret
+ynh_app_setting_set --key=auth_secret --value=$auth_secret
+ynh_app_setting_set --key=secret_encryption_key --value=$secret_encryption_key
+ynh_app_setting_set --key=cron_job_api_key --value=$cron_job_api_key
+ynh_app_setting_set --key=redis_db --value=$redis_db
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression "Installing dependencies..."
 
-npm install corepack
+#npm install -g pnpm
+# https://github.com/pnpm/pnpm/issues/8949
+npm install --global corepack@latest
+corepack enable pnpm
+corepack use pnpm@latest-10
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -21,17 +32,6 @@ npm install corepack
 ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-ynh_script_progression "Adding $app's configuration files..."
-
-ynh_config_add_nginx
-
-ynh_config_add_systemd
-
-yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -46,27 +46,66 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-    ynh_hide_warnings corepack enable
-    ynh_hide_warnings npm install -g corepack@latest
-    ynh_hide_warnings ynh_exec_as_app corepack prepare pnpm@10 --activate
-    ynh_hide_warnings ynh_exec_as_app corepack prepare yarn@latest --activate
+ 
+ynh_script_progression "install the app..."
 
-    export NODE_OPTIONS="--max-old-space-size=3000"
-	ynh_hide_warnings ynh_exec_as_app pnpm install --recursive --frozen-lockfile
-	ynh_hide_warnings pnpm build
-    ynh_hide_warnings pnpm run db:migration:sqlite:run
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+
+ynh_script_progression "Build the app..."
+
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
+
+ynh_script_progression "db migrate the app..."
+
+ynh_exec_as_app pnpm run db:migration:sqlite:run
     mkdir -p build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
+    pnpm store prune
 popd
 
 chown -R $app:$app $install_dir
+
+#=================================================
+# Fixing hardcoded websocket port
+#=================================================
+ynh_script_progression "Applying websocket patch..."
+
+# This is the main file for websocket where the port is hardcoded to 3001
+#ws_main_file="$install_dir/apps/websocket/src/main.ts"
+
+# Change the constant to retrieve the port from .env (this seems the way that js handles env vars), this should look like this :
+# const wss = new WebSocketServer({ port: parseInt(process.env.PORT_WEBSOCKET || "3001", 10), });
+# Here https://github.com/homarr-labs/homarr/blob/dev/apps/websocket/src/main.ts
+# Examples : https://github.com/homarr-labs/homarr/blob/f4bb90013a791be05c4502a0014b228b339f61d8/packages/core/src/infrastructure/db/env.ts#L11
+#sed -i 's/port: 3001,/port: parseInt(process.env.PORT_WEBSOCKET || "3001", 10),/' "$ws_main_file"
+# didn't work, something else breaks 
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start"
+ynh_config_add_nginx
+
+mkdir -p /var/log/$app 
+
+chown -R $app:$app /var/log/$app
+
+ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
+ynh_config_add_systemd --service="$app-wss" --template="wss.service"
+ynh_config_add_systemd --service="$app" --template="systemd.service"
+
+yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
+
+ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
+
+yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
+
+ynh_systemctl --service=$app-wss --action="start"  --timeout=600
+
+yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
+
+ynh_systemctl --service=$app --action="start"  --timeout=600
 
 #=================================================
 # END OF SCRIPT
