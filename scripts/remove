@@ -11,6 +11,14 @@ if ynh_hide_warnings yunohost service status $app >/dev/null; then
 	yunohost service remove $app
 fi
 
+if ynh_hide_warnings yunohost service status $app-tasks >/dev/null; then
+	yunohost service remove $app-tasks 
+fi
+
+if ynh_hide_warnings yunohost service status $app-wss >/dev/null; then
+	yunohost service remove $app-wss
+fi
+
 ynh_config_remove_systemd
 
 ynh_config_remove_nginx
