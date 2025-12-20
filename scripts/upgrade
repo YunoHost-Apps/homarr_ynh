@@ -10,14 +10,16 @@ timezone=$(timedatectl show --value --property=Timezone)
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action="stop" --log_path="systemd"
+ynh_systemctl --service=$app --action="stop"
+ynh_systemctl --service=$app-tasks --action="stop"
+ynh_systemctl --service=$app-wss --action="stop"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env db.sqlite"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -25,10 +27,6 @@ ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
 ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
-
-ynh_config_add_systemd
-
-yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -40,7 +38,7 @@ yunohost service add $app --description="Customizable browser's home page" --log
 #=================================================
 # INSTALL HOMARR
 #=================================================
-ynh_script_progression "Building the app..."
+ynh_scipt_progression "Building the app..."
 
 pushd $install_dir
 	ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
@@ -57,8 +55,10 @@ popd
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"  --timeout=600
-
+ynh_systemctl --service=$app --action="start"
+ynh_systemctl --service=$app-tasks --action="start"
+ynh_systemctl --service=$app-wss --action="start"
+ 
 #=================================================
 # END OF SCRIPT
 #=================================================
