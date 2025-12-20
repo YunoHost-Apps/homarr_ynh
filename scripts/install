@@ -83,7 +83,7 @@ ynh_config_add_nginx
 
 mkdir /var/log/$app 
 
-chown $app:$app /var/log/$app
+chown -R $app:$app /var/log/$app
 
 ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
 
