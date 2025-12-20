@@ -9,6 +9,12 @@ secret_encryption_key=$(ynh_string_random --length=64 --filter= 'a-f0-9')
 cron_job_api_key=$(ynh_string_random --length=32)
 redis_db=$(ynh_redis_get_free_db)
 
+ynh_app_setting_set --key=secret --value=$secret
+ynh_app_setting_set --key=auth_secret --value=$auth_secret
+ynh_app_setting_set --key=secret_encryption_key --value=$secret_encryption_key
+ynh_app_setting_set --key=cron_job_api_key --value=$cron_job_api_key
+ynh_app_setting_set --key=redis_db --value=$redis_db
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
