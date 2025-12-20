@@ -1,6 +1,7 @@
 [Unit]
 Description=Homarr: customizable home page
 After=network.target
+Requires=__APP__-wss.service
 
 [Service]
 Type=simple
