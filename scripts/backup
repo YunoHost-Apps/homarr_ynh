@@ -18,6 +18,10 @@ ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 
 ynh_backup "/etc/systemd/system/$app.service"
 
+ynh_backup "/etc/systemd/system/$app-tasks.service"
+
+ynh_backup "/etc/systemd/system/$app-wss.service"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
