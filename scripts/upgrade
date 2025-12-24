@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source _common.sh
 source /usr/share/yunohost/helpers
 
 secret=$(ynh_string_random --length=24)
@@ -11,21 +10,16 @@ timezone=$(timedatectl show --value --property=Timezone)
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service=$app --action="stop" --log_path="systemd"
+ynh_systemctl --service=$app --action="stop"
+ynh_systemctl --service=$app-tasks --action="stop"
+ynh_systemctl --service=$app-wss --action="stop"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression "Upgrading dependencies..."
-
-ynh_nodejs_install
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env db.sqlite"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -34,8 +28,12 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
+ynh_config_add_systemd --service="$app-wss" --template="wss.service"
+ynh_config_add_systemd --service="$app" --template="systemd.service"
 
+yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
+yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
@@ -51,9 +49,13 @@ yunohost service add $app --description="Customizable browser's home page" --log
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
-	ynh_hide_warnings ynh_exec_as_app yarn install
-	ynh_hide_warnings ynh_exec_as_app NODE_ENV=production yarn build
-	ynh_hide_warnings ynh_exec_as_app yarn db:migrate
+	ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+
+    ynh_script_progression "Build the app..."
+
+    ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
+
+    ynh_exec_as_app pnpm run db:migration:sqlite:run
 popd
 
 #=================================================
@@ -61,8 +63,10 @@ popd
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start" --log_path="systemd"
-
+ynh_systemctl --service=$app --action="start"  --timeout=600
+ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
+ynh_systemctl --service=$app-wss --action="start"  --timeout=600
+ 
 #=================================================
 # END OF SCRIPT
 #=================================================

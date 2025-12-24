@@ -5,30 +5,29 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "0.15.10~ynh1"
+version = "1.47.0~ynh1"
 
-maintainers = ["eric_G"]
+maintainers = []
 
 [upstream]
 license = "MIT"
 website = "https://homarr.dev/"
-demo = "https://homarr.ajnart.fr/fr"
-admindoc = "https://homarr.dev/docs/about"
-userdoc = "https://homarr.dev/docs/about"
-code = "https://github.com/ajnart/homarr"
+admindoc = "https://homarr.dev/docs/getting-started"
+userdoc = "https://homarr.dev/docs/category/management"
+code = "https://github.com/homarr-labs/homarr"
 
 [integration]
 yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
-multi_instance = true
+multi_instance = false
 
 ldap = false
 sso = false
 
-disk = "50M"
-ram.build = "1500M"
-ram.runtime = "50M"
+disk = "3G"
+ram.build = "7G"
+ram.runtime = "2G"
 
 [install]
     [install.domain]
@@ -40,12 +39,14 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/ajnart/homarr/archive/refs/tags/v0.15.10.tar.gz"
-        sha256 = "fd8d22214819ebe0705f14b58bb287fb9e60f817f00d8b3ee64e610154102405"
+        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.47.0.tar.gz"
+        sha256 = "91f61b5da808cf488e0368f20e3ae04f698b601b38f85857eeb518b0614ec7c3"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
-
+        main.default = 3000 
+        tasks.default = 3002
+        websocket.default = 3003
     [resources.system_user]
 
     [resources.install_dir]
@@ -54,7 +55,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "sqlite3"
-    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
-    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
-    extras.yarn.packages = "yarn"
+    packages = "sqlite3, redis-server, ca-certificates" 
+
+    [resources.nodejs]
+    version = "24"

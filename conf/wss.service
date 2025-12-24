@@ -1,21 +1,23 @@
 [Unit]
-Description=Homarr: customizable home page
+Description=WSS for Homarr: customizable home page
 After=network.target
-Requires=__APP__-wss.service
+Requires=__APP__-tasks.service
 
 [Service]
 Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__INSTALL_DIR__/apps/nextjs
+WorkingDirectory=__INSTALL_DIR__/
 Environment="PATH=__PATH_WITH_NODEJS__"
 EnvironmentFile=__INSTALL_DIR__/.env
 Environment="NODE_OPTIONS=--max-old-space-size=4096"
-ExecStart=__NODEJS_DIR__/pnpm start
+ExecStart=__NODEJS_DIR__/node __INSTALL_DIR__/apps/websocket/wssServer.cjs
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=600s
 StartLimitBurst=3
+TimeoutStopSec=2
+KillSignal=SIGTERM
 
 # Sandboxing options to harden security
 # Depending on specificities of your service/app, you may need to tweak these
@@ -37,7 +39,7 @@ ProtectKernelModules=yes
 ProtectKernelTunables=yes
 LockPersonality=yes
 SystemCallArchitectures=native
-#SystemCallFilter=~@clock @debug @module @mount @obsolete @reboot @setuid @swap @cpu-emulation @privileged
+SystemCallFilter=~@clock @debug @module @mount @obsolete @reboot @setuid @swap @cpu-emulation @privileged
 
 # Denying access to capabilities that should not be relevant for webapps
 # Doc: https://man7.org/linux/man-pages/man7/capabilities.7.html

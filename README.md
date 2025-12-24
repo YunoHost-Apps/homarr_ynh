@@ -11,19 +11,22 @@ It shall NOT be edited by hand.
 Customizable browser's home page to interact with your homeserver's Docker containers
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://homarr.dev/)
-[![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://homarr.ajnart.fr/fr)
-[![Version: 0.15.10~ynh1](https://img.shields.io/badge/Version-0.15.10~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/homarr/)
+[![Version: 1.47.0~ynh1](https://img.shields.io/badge/Version-1.47.0~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/homarr/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/homarr"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
 <a href="https://github.com/YunoHost-Apps/homarr_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
 
+
+## Screenshots
+![Screenshot of Homarr](./doc/screenshots/screenshot.png)
+
 ## 📦 Developer info
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/homarr)](https://ci-apps.yunohost.org/ci/apps/homarr/)
 
-🛠️ Upstream Homarr repository: <https://github.com/ajnart/homarr>
+🛠️ Upstream Homarr repository: <https://github.com/homarr-labs/homarr>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/homarr_ynh/tree/testing).
 
