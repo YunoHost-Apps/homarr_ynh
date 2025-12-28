@@ -39,8 +39,8 @@ ram.runtime = "2G"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.47.0.tar.gz"
-        sha256 = "91f61b5da808cf488e0368f20e3ae04f698b601b38f85857eeb518b0614ec7c3"
+        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.48.0.tar.gz"
+        sha256 = "54927b37b77d1e249b8985107434b31198776c8d0a87566f0ba70134a5a8081c"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
