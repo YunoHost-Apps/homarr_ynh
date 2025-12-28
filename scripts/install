@@ -68,7 +68,7 @@ chown -R $app:$app $install_dir
 #=================================================
 # Fixing hardcoded websocket port
 #=================================================
-ynh_script_progression "Applying websocket patch..."
+# ynh_script_progression "Applying websocket patch..."
 
 # This is the main file for websocket where the port is hardcoded to 3001
 #ws_main_file="$install_dir/apps/websocket/src/main.ts"
