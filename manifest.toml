@@ -53,6 +53,7 @@ ram.runtime = "2G"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_headers = false
 
     [resources.apt]
     packages = "sqlite3, redis-server, ca-certificates" 
