@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "1.49.1~ynh1"
+version = "1.50.0~ynh2"
 
 maintainers = []
 
@@ -17,7 +17,7 @@ userdoc = "https://homarr.dev/docs/category/management"
 code = "https://github.com/homarr-labs/homarr"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.38"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
