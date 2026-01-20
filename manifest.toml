@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "1.50.0~ynh1"
+version = "1.50.1~ynh1"
 
 maintainers = []
 
@@ -22,7 +22,7 @@ helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
-ldap = false
+ldap = true
 sso = false
 
 disk = "3G"
@@ -39,8 +39,8 @@ ram.runtime = "2G"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.50.0.tar.gz"
-        sha256 = "496ec0634e8b0b7b20ade479d2f807dfe9031b5b7329327bd22c2fe283dcc33e"
+        url = "https://github.com/homarr-labs/homarr/archive/refs/tags/v1.50.1.tar.gz"
+        sha256 = "d177b996a42c626859882d84b1a73756ed904085a51584f38ebe3461d18b5435"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.ports]
@@ -53,6 +53,7 @@ ram.runtime = "2G"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_headers = false
 
     [resources.apt]
     packages = "sqlite3, redis-server, ca-certificates" 
