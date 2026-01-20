@@ -22,7 +22,7 @@ helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
-ldap = false
+ldap = true
 sso = false
 
 disk = "3G"
@@ -53,6 +53,7 @@ ram.runtime = "2G"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_headers = false
 
     [resources.apt]
     packages = "sqlite3, redis-server, ca-certificates" 

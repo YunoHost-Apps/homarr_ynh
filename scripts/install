@@ -61,6 +61,9 @@ ynh_exec_as_app pnpm run db:migration:sqlite:run
     mkdir -p build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
     pnpm store prune
+
+ynh_exec_as_app mkdir ./appdata
+chmod 755 ./appdata
 popd
 
 chown -R $app:$app $install_dir
@@ -68,7 +71,7 @@ chown -R $app:$app $install_dir
 #=================================================
 # Fixing hardcoded websocket port
 #=================================================
-ynh_script_progression "Applying websocket patch..."
+# ynh_script_progression "Applying websocket patch..."
 
 # This is the main file for websocket where the port is hardcoded to 3001
 #ws_main_file="$install_dir/apps/websocket/src/main.ts"
