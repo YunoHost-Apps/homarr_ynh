@@ -59,7 +59,9 @@ ynh_script_progression "db migrate the app..."
 
 ynh_exec_as_app pnpm run db:migration:sqlite:run
     mkdir -p build
+    mkdir -p apps/websocket/build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
+    cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/apps/websocket/build/better_sqlite3.node
     pnpm store prune
 
 ynh_exec_as_app mkdir ./appdata
