@@ -35,10 +35,11 @@ ynh_script_progression "Preparing mise config..."
   ynh_hide_warnings eval "$(mise activate bash)"
 
 ynh_script_progression "Installing dependencies..."
-
-mise trust
-mise install
-mise run install
+pushd $install_dir
+  mise trust
+  mise install
+  mise run install
+popd
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
