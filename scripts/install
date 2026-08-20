@@ -18,6 +18,23 @@ ynh_app_setting_set --key=redis_db --value=$redis_db
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
+ynh_script_progression "Setting up source files for mise..."
+  ynh_setup_source --dest_dir="$install_dir/.mise/bin" --source_id="mise"
+  chmod +x "$install_dir/.mise/bin/bin/mise"
+
+ynh_script_progression "Preparing mise config..."
+  export PATH="$install_dir/.mise/bin/bin:$PATH"
+  export MISE_DATA_DIR="$install_dir/.mise/data"
+  export MISE_CONFIG_DIR="$install_dir/.mise/config"
+  export MISE_CACHE_DIR="$install_dir/.mise/cache"
+  export MISE_STATE_DIR="$install_dir/.mise/state"
+  export MISE_YES=1
+  mkdir -p "$MISE_DATA_DIR" "$MISE_CONFIG_DIR" "$MISE_CACHE_DIR" "$MISE_STATE_DIR"
+  ynh_config_add --template=".mise.toml" --destination="$install_dir/.mise.toml"
+  ynh_config_add --template=".bashrc" --destination="$install_dir/.bashrc"
+
+  ynh_hide_warnings eval "$(mise activate bash)"
+
 ynh_script_progression "Installing dependencies..."
 
 #npm install -g pnpm
