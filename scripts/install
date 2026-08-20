@@ -36,6 +36,7 @@ ynh_script_progression "Preparing mise config..."
 
 ynh_script_progression "Installing dependencies..."
 
+mise trust
 mise install
 mise run install
 
