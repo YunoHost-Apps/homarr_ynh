@@ -32,16 +32,11 @@ ynh_script_progression "Preparing mise config..."
   mkdir -p "$MISE_DATA_DIR" "$MISE_CONFIG_DIR" "$MISE_CACHE_DIR" "$MISE_STATE_DIR"
   ynh_config_add --template=".mise.toml" --destination="$install_dir/.mise.toml"
   ynh_config_add --template=".bashrc" --destination="$install_dir/.bashrc"
-
   ynh_hide_warnings eval "$(mise activate bash)"
 
 ynh_script_progression "Installing dependencies..."
 
-#npm install -g pnpm
-# https://github.com/pnpm/pnpm/issues/8949
-npm install --global corepack@latest
-corepack enable pnpm
-corepack use pnpm@latest
+mise run install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -63,26 +58,13 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
- 
-ynh_script_progression "install the app..."
-
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
-
-ynh_script_progression "Build the app..."
-
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
-
-ynh_script_progression "db migrate the app..."
-
-ynh_exec_as_app pnpm run db:migration:sqlite:run
+    mise run build
     mkdir -p build
     mkdir -p apps/websocket/build
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
     cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/apps/websocket/build/better_sqlite3.node
-    pnpm store prune
-
-ynh_exec_as_app mkdir ./appdata
-chmod 755 ./appdata
+    mkdir ./appdata
+    chmod 755 ./appdata
 popd
 
 chown -R $app:$app $install_dir
