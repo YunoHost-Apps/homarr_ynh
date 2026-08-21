@@ -3,12 +3,16 @@ node = "24"
 aube = "latest"
 
 [env]
+HOME = "__INSTALL_DIR__"
+XDG_CACHE_HOME = "__INSTALL_DIR__/.mise/cache"
+XDG_DATA_HOME = "__INSTALL_DIR__/.mise/data"
 NODE_OPTIONS = "--max-old-space-size=4096"
 TURBO_TELEMETRY_DISABLED = "1"
 
 [tasks.build]
 description = "Build app, run database migrations, and clean store"
 run = """
+aube config set enableGlobalVirtualStore false --location project
 aube install
 aube run build --concurrency=1
 aube run db:migration:sqlite:run
