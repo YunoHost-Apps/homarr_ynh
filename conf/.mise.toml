@@ -12,7 +12,7 @@ TURBO_TELEMETRY_DISABLED = "1"
 [tasks.build]
 description = "Build app, run database migrations, and clean store"
 run = """
-pnpm install --frozen-lockfile
+pnpm install --frozen-lockfile --package-import-method=copy
 pnpm run db:migration:sqlite:run
 pnpm run build --concurrency=1
 pnpm store prune
