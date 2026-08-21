@@ -52,7 +52,7 @@ ynh_script_progression "Installing dependencies..."
 pushd $install_dir
   mise trust
   mise install
-  mise run install
+  mise run dep
 popd
 
 #=================================================
