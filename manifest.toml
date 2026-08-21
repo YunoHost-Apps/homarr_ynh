@@ -43,6 +43,22 @@ ram.runtime = "2G"
         sha256 = "adc741fc42eaf5e69d3da8d7dc86ee7d86a3bc3bc7a33796352e46878ed9bb5a"
         autoupdate.strategy = "latest_github_tag"
 
+        [resources.sources.mise]
+        amd64.url = "https://github.com/jdx/mise/releases/download/v2026.8.9/mise-v2026.8.9-linux-x64.tar.gz"
+        amd64.sha256 = "790c3ea7fe7e97572aef0ca9b27c09aad162e0ffa85d70797cc3da24b8e1cea6"
+        arm64.url = "https://github.com/jdx/mise/releases/download/v2026.8.9/mise-v2026.8.9-linux-arm64.tar.gz"
+        arm64.sha256 = "e289909e414bad0929172443bb99056867e933b858964b36bbed1c5f6e81b92b"
+        armhf.url = "https://github.com/jdx/mise/releases/download/v2026.8.9/mise-v2026.8.9-linux-armv7.tar.gz"
+        armhf.sha256 = "a64e12184c2b8df56ae5ca8f807a5b00a3e7eff12cfbcf35e0ae545fcaa27067"
+        
+        in_subdir = true
+        
+        autoupdate.strategy = "latest_github_release"
+        autoupdate.upstream = "https://github.com/jdx/mise"
+        autoupdate.asset.amd64 = "^mise-v.*-linux-x64\\.tar\\.gz$"
+        autoupdate.asset.arm64 = "^mise-v.*-linux-arm64\\.tar\\.gz$"
+        autoupdate.asset.armhf = "^mise-v.*-linux-armv7\\.tar\\.gz$"
+
     [resources.ports]
         main.default = 3000 
         tasks.default = 3002
