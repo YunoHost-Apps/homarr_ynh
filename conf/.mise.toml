@@ -1,6 +1,6 @@
 [tools]
 node = "24"
-aube = "latest"
+pnpm = "latest"
 
 [env]
 HOME = "__INSTALL_DIR__"
@@ -12,9 +12,8 @@ TURBO_TELEMETRY_DISABLED = "1"
 [tasks.build]
 description = "Build app, run database migrations, and clean store"
 run = """
-aube config set enableGlobalVirtualStore false --location project
-aube install
-aube run build --concurrency=1
-aube run db:migration:sqlite:run
-aube store prune
+pnpm install --frozen-lockfile
+pnpm run db:migration:sqlite:run
+pnpm run build --concurrency=1
+pnpm store prune
 """
