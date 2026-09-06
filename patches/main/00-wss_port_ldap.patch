@@ -8,13 +8,13 @@
 -});
 +  port: Number(process.env.PORT_WEBSOCKET) || 3003,
 +  });
- const handler = applyWSSHandler({
-   wss,
-   router: appRouter,
+ wss.on("error", (error) => {
+   logger.error(new Error("WebSocket server error", { cause: error }));
+ });
 
 --- a/packages/auth/env.ts
 +++ b/packages/auth/env.ts
-@@ -45,8 +45,8 @@
+@@ -55,8 +55,8 @@
      ...(authProviders.includes("ldap")
        ? {
            AUTH_LDAP_URI: z.string().url(),
@@ -28,7 +28,7 @@
 
 --- a/packages/auth/providers/credentials/authorization/ldap-authorization.ts 
 +++ b/packages/auth/providers/credentials/authorization/ldap-authorization.ts
-@@ -19,14 +19,14 @@
+@@ -20,14 +20,14 @@
  ) => {
    logger.info("User is trying to log in using LDAP. Connecting to LDAP server...", { userName: credentials.name });
    const client = new LdapClient();
