@@ -49,11 +49,11 @@ pushd $install_dir
  
 ynh_script_progression "install the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=3072" pnpm install 
 
 ynh_script_progression "Build the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=2048" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=3072" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
 
 ynh_script_progression "db migrate the app..."
 
