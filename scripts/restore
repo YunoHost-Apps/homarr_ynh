@@ -26,14 +26,8 @@ ynh_script_progression "Restoring system configurations related to $app..."
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
-ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
-ynh_config_add_systemd --service="$app-wss" --template="wss.service"
 ynh_config_add_systemd --service="$app" --template="systemd.service"
 
-yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
-ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
-yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
-ynh_systemctl --service=$app-wss --action="start"  --timeout=600
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 ynh_systemctl --service=$app --action="start"  --timeout=600
 
