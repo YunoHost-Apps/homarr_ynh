@@ -13,7 +13,7 @@ ynh_script_progression "Reinstall pnpm..."
 
 npm install --global corepack@latest
 corepack enable pnpm
-corepack use pnpm@latest-10
+corepack use pnpm@latest
 chown -R $app:$app $install_dir
 
 mkdir -p /var/log/$app
