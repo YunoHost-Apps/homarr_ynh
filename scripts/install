@@ -24,7 +24,6 @@ ynh_script_progression "Installing dependencies..."
 # https://github.com/pnpm/pnpm/issues/8949
 npm install --global corepack@latest
 corepack enable pnpm
-corepack use pnpm@latest
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -48,6 +47,8 @@ ynh_script_progression "Building the app..."
 pushd $install_dir
  
 ynh_script_progression "install the app..."
+
+ynh_exec_as_app corepack use pnpm@latest
 
 ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=3072" pnpm install 
 
