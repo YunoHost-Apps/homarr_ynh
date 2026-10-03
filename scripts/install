@@ -24,7 +24,6 @@ ynh_script_progression "Installing dependencies..."
 # https://github.com/pnpm/pnpm/issues/8949
 npm install --global corepack@latest
 corepack enable pnpm
-corepack use pnpm@latest
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -49,11 +48,13 @@ pushd $install_dir
  
 ynh_script_progression "install the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+ynh_exec_as_app corepack use pnpm@latest
+
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=3072" pnpm install 
 
 ynh_script_progression "Build the app..."
 
-ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
+ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=3072" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
 
 ynh_script_progression "db migrate the app..."
 
@@ -96,17 +97,9 @@ mkdir -p /var/log/$app
 
 chown -R $app:$app /var/log/$app
 
-ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
-ynh_config_add_systemd --service="$app-wss" --template="wss.service"
 ynh_config_add_systemd --service="$app" --template="systemd.service"
 
-yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
 
-ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
-
-yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
-
-ynh_systemctl --service=$app-wss --action="start"  --timeout=600
 
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 

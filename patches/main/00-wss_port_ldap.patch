@@ -1,20 +1,21 @@
+diff --git a/apps/websocket/src/main.ts b/apps/websocket/src/main.ts
+index 9e00322..3dfe121 100644
 --- a/apps/websocket/src/main.ts
 +++ b/apps/websocket/src/main.ts
-@@ -10,8 +10,8 @@
+@@ -10,7 +10,7 @@ import { db } from "@homarr/db";
  const logger = createLogger({ module: "websocketMain" });
  
  const wss = new WebSocketServer({
 -  port: 3001,
--});
 +  port: Number(process.env.PORT_WEBSOCKET) || 3003,
-+  });
- const handler = applyWSSHandler({
-   wss,
-   router: appRouter,
-
+ });
+ wss.on("error", (error) => {
+   logger.error(new Error("WebSocket server error", { cause: error }));
+diff --git a/packages/auth/env.ts b/packages/auth/env.ts
+index 484db55..0ffd3c3 100644
 --- a/packages/auth/env.ts
 +++ b/packages/auth/env.ts
-@@ -45,8 +45,8 @@
+@@ -55,8 +55,8 @@ export const env = createEnv({
      ...(authProviders.includes("ldap")
        ? {
            AUTH_LDAP_URI: z.string().url(),
@@ -25,10 +26,11 @@
            AUTH_LDAP_BASE: z.string(),
            AUTH_LDAP_SEARCH_SCOPE: z.enum(["base", "one", "sub"]).default("base"),
            AUTH_LDAP_USERNAME_ATTRIBUTE: z.string().default("uid"),
-
---- a/packages/auth/providers/credentials/authorization/ldap-authorization.ts 
+diff --git a/packages/auth/providers/credentials/authorization/ldap-authorization.ts b/packages/auth/providers/credentials/authorization/ldap-authorization.ts
+index 31fa759..381c0fc 100644
+--- a/packages/auth/providers/credentials/authorization/ldap-authorization.ts
 +++ b/packages/auth/providers/credentials/authorization/ldap-authorization.ts
-@@ -19,14 +19,14 @@
+@@ -20,14 +20,14 @@ export const authorizeWithLdapCredentialsAsync = async (
  ) => {
    logger.info("User is trying to log in using LDAP. Connecting to LDAP server...", { userName: credentials.name });
    const client = new LdapClient();
@@ -50,11 +52,13 @@
 +//    });
  
    logger.info("Connected to LDAP server. Searching for user...");
-   
+ 
+diff --git a/packages/auth/providers/test/ldap-authorization.spec.ts b/packages/auth/providers/test/ldap-authorization.spec.ts
+index 0b9fd89..9459b75 100644
 --- a/packages/auth/providers/test/ldap-authorization.spec.ts
 +++ b/packages/auth/providers/test/ldap-authorization.spec.ts
-@@ -12,8 +12,8 @@
-
+@@ -12,8 +12,8 @@ import * as ldapClient from "../credentials/ldap-client";
+ 
  vi.mock("../../env", () => ({
    env: {
 -    AUTH_LDAP_BIND_DN: "bind_dn",
@@ -64,3 +68,4 @@
      AUTH_LDAP_USER_MAIL_ATTRIBUTE: "mail",
      AUTH_LDAP_GROUP_CLASS: "group",
    },
+-- 
