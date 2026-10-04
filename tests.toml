@@ -3,3 +3,4 @@ test_format = 1.0
 [default]
     #test_upgrade_from.6c6179b.name = "1.3.4"
     test_upgrade_from.c937490.name = "1.61.0"
+    test_upgrade_from.e6257b9.name = "1.77.2"
