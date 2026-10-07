@@ -11,7 +11,7 @@ WorkingDirectory=__INSTALL_DIR__
 
 EnvironmentFile=__INSTALL_DIR__/.env
 
-ExecStart=__INSTALL_DIR__/.mise/bin/bin/mise exec -- pnpm start
+ExecStart=__INSTALL_DIR__/.mise/bin/bin/mise exec -- bun run start
 
 Restart=on-failure
 RestartSec=5
