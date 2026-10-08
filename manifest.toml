@@ -72,7 +72,7 @@ ram.runtime = "2G"
     main.auth_headers = false
 
     [resources.apt]
-    packages = "sqlite3, redis-server, ca-certificates" 
+    packages = "sqlite3, redis-server, ca-certificates, build-essential" 
 
     [resources.nodejs]
     version = "24"
