@@ -1,0 +1,21 @@
+[tools]
+node = "24.18.0"
+bun = "1.4.2"
+pnpm = "latest"
+
+[env]
+HOME = "__INSTALL_DIR__"
+XDG_CACHE_HOME = "__INSTALL_DIR__/.mise/cache"
+XDG_DATA_HOME = "__INSTALL_DIR__/.mise/data"
+NODE_OPTIONS = "--max-old-space-size=8192"
+TURBO_TELEMETRY_DISABLED = "1"
+
+[tasks.build]
+description = "Build app, run database migrations"
+run = """
+bun add winston-transport
+bun add @tanstack/query-core
+bun install
+bun run db:migration:sqlite:run
+bun run build
+"""
