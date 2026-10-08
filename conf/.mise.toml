@@ -14,6 +14,7 @@ TURBO_TELEMETRY_DISABLED = "1"
 description = "Build app, run database migrations, and clean store"
 run = """
 pnpm install 
+pnpm dedupe esbuild
 pnpm run db:migration:sqlite:run
 pnpm run build
 """
