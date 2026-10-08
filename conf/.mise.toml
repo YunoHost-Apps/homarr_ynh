@@ -13,8 +13,7 @@ TURBO_TELEMETRY_DISABLED = "1"
 [tasks.build]
 description = "Build app, run database migrations, and clean store"
 run = """
-bun install
-bun install winston 
+bun install 
 bun run db:migration:sqlite:run
 bun run build
 """
