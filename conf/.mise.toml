@@ -9,6 +9,7 @@ XDG_CACHE_HOME = "__INSTALL_DIR__/.mise/cache"
 XDG_DATA_HOME = "__INSTALL_DIR__/.mise/data"
 NODE_OPTIONS = "--max-old-space-size=8192"
 TURBO_TELEMETRY_DISABLED = "1"
+PNPM_CONFIG_OVERRIDES='{"esbuild": "0.25.12"}'
 
 [tasks.build]
 description = "Build app, run database migrations, and clean store"
