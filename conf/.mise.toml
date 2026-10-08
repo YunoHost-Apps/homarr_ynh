@@ -14,6 +14,7 @@ TURBO_TELEMETRY_DISABLED = "1"
 description = "Build app, run database migrations"
 run = """
 bun add winston-transport
+bun add @tanstack/query-core
 bun install
 bun run db:migration:sqlite:run
 bun run build
