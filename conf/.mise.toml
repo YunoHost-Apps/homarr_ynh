@@ -9,12 +9,11 @@ XDG_CACHE_HOME = "__INSTALL_DIR__/.mise/cache"
 XDG_DATA_HOME = "__INSTALL_DIR__/.mise/data"
 NODE_OPTIONS = "--max-old-space-size=8192"
 TURBO_TELEMETRY_DISABLED = "1"
-PNPM_CONFIG_OVERRIDES='{"esbuild": "0.25.12"}'
 
 [tasks.build]
-description = "Build app, run database migrations, and clean store"
+description = "Build app, run database migrations"
 run = """
-pnpm install  --loglevel=debug --network-concurrency=8 --fetch-timeout=60000 --fetch-retries=2
-pnpm run db:migration:sqlite:run
-pnpm run build
+bun install
+bun run db:migration:sqlite:run
+bun run build
 """
