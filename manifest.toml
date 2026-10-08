@@ -74,5 +74,3 @@ ram.runtime = "2G"
     [resources.apt]
     packages = "sqlite3, redis-server, ca-certificates, build-essential" 
 
-    [resources.nodejs]
-    version = "24"
