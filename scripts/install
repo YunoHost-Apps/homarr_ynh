@@ -46,26 +46,14 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression "Building the app..."
 
 pushd $install_dir
- 
-ynh_script_progression "install the app..."
 
-#ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+      ynh_exec_as_app mkdir ./appdata
+      chmod 755 ./appdata
 
-#ynh_script_progression "Build the app..."
+      ynh_script_progression "db migrate the app..."
+      cd db/migrations/sqlite
+      ynh_exec_as_app node migrate.cjs
 
-#ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1 
-
-ynh_script_progression "db migrate the app..."
-
-ynh_exec_as_app pnpm run db:migration:sqlite:run
-#    mkdir -p build
-#    mkdir -p apps/websocket/build
-#    cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
-#    cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/apps/websocket/build/better_sqlite3.node
-#    pnpm store prune
-
-ynh_exec_as_app mkdir ./appdata
-chmod 755 ./appdata
 popd
 
 chown -R $app:$app $install_dir
