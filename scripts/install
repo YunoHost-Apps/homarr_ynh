@@ -51,8 +51,7 @@ pushd $install_dir
       #chmod 755 /appdata
 
       ynh_script_progression "db migrate the app..." 
-      source $install_dir/.env 
-      NODE_ENV=production node db/migrations/sqlite/migrate.cjs
+#      NODE_ENV=production node db/migrations/sqlite/migrate.cjs
 
 popd
 
