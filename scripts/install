@@ -44,15 +44,10 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 #=================================================
 ynh_script_progression "Building the app..."
 
-pushd $install_dir
-
-      #mkdir /appdata
-      #chmod 755 /appdata
+pushd $install_dir/db/migrations/sqlite/
 
       ynh_script_progression "db migrate the app..." 
-      ynh_exec_as_app cp .env apps/nextjs/.env
-      #ynh_exec_as_app NODE_ENV=production node db/migrations/sqlite/migrate.cjs
-      rm apps/nextjs/.env
+      ynh_exec_as_app node migrate.cjs
 
 popd
 
