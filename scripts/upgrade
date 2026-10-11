@@ -11,15 +11,13 @@ timezone=$(timedatectl show --value --property=Timezone)
 ynh_script_progression "Stopping $app's systemd service..."
 
 ynh_systemctl --service=$app --action="stop"
-ynh_systemctl --service=$app-tasks --action="stop"
-ynh_systemctl --service=$app-wss --action="stop"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=".env db.sqlite appdata"
+ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=".env apps/nextjs/db.sqlite appdata"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -28,12 +26,8 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd --service="$app-tasks" --template="tasks.service"
-ynh_config_add_systemd --service="$app-wss" --template="wss.service"
 ynh_config_add_systemd --service="$app" --template="systemd.service"
 
-yunohost service add $app-tasks --description="Tasks for the Customizable browser's home page" --log="/var/log/$app/$app-tasks.log"
-yunohost service add $app-wss --description="WSS for the Customizable browser's home page" --log="/var/log/$app/$app-wss.log"
 yunohost service add $app --description="Customizable browser's home page" --log="/var/log/$app/$app.log"
 
 #=================================================
@@ -46,24 +40,15 @@ yunohost service add $app --description="Customizable browser's home page" --log
 #=================================================
 # INSTALL HOMARR
 #=================================================
-ynh_script_progression "Building the app..."
 
-pushd $install_dir
-	ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" pnpm install 
+pushd $install_dir/db/migrations/sqlite/
 
-    ynh_script_progression "Build the app..."
+      ynh_script_progression "db migrate the app..." 
+      DB_URL=$install_dir/apps/nextjs/db.sqlite node migrate.cjs
 
-    ynh_exec_as_app NODE_OPTIONS="--max-old-space-size=4096" TURBO_TELEMETRY_DISABLED=1 pnpm build --concurrency=1
-
-    ynh_exec_as_app pnpm run db:migration:sqlite:run
-    mkdir -p build
-    mkdir -p apps/websocket/build
-    cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/build/better_sqlite3.node
-    cp $install_dir/node_modules/better-sqlite3/build/Release/better_sqlite3.node $install_dir/apps/websocket/build/better_sqlite3.node
-    pnpm store prune
-
-chmod 755 ./appdata
 popd
+
+chown -R $app:$app $install_dir
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -71,8 +56,6 @@ popd
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service=$app --action="start"  --timeout=600
-ynh_systemctl --service=$app-tasks --action="start"  --timeout=600
-ynh_systemctl --service=$app-wss --action="start"  --timeout=600
  
 #=================================================
 # END OF SCRIPT
