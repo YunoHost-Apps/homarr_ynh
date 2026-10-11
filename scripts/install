@@ -47,8 +47,8 @@ ynh_script_progression "Building the app..."
 
 pushd $install_dir
 
-      ynh_exec_as_app mkdir ./appdata
-      chmod 755 ./appdata
+      mkdir /appdata
+      chmod 755 /appdata
 
       ynh_script_progression "db migrate the app..."
       cd db/migrations/sqlite
