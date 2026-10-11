@@ -51,7 +51,7 @@ pushd $install_dir
 
       ynh_script_progression "db migrate the app..." 
       cp .env apps/nextjs/.env
-      NODE_ENV=production node db/migrations/sqlite/migrate.cjs
+      ynh_exec_as_app NODE_ENV=production node db/migrations/sqlite/migrate.cjs
       rm apps/nextjs/.env
 
 popd
