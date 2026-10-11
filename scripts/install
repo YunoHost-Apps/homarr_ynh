@@ -47,7 +47,8 @@ ynh_script_progression "Building the app..."
 pushd $install_dir/db/migrations/sqlite/
 
       ynh_script_progression "db migrate the app..." 
-#      ynh_exec_as_app node migrate.cjs
+      set -a; . /var/www/homarr/.env; set +a
+      ynh_exec_as_app node migrate.cjs
 
 popd
 
