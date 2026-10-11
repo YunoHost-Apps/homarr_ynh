@@ -47,7 +47,8 @@ ram.runtime = "2G"
 
     [resources.ports]
         main.default = 4000 
-        websocket.fixed = 3001
+        websocket.default = 3001
+        websocket.fixed = true
         
     [resources.system_user]
 
@@ -55,7 +56,7 @@ ram.runtime = "2G"
 
     [resources.permissions]
     main.url = "/"
-    main.auth_headers = false
+    main.auth_header = false
 
     [resources.apt]
     packages = "sqlite3, redis-server, ca-certificates" 
