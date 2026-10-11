@@ -47,12 +47,11 @@ ynh_script_progression "Building the app..."
 
 pushd $install_dir
 
-      mkdir /appdata
-      chmod 755 /appdata
+      #mkdir /appdata
+      #chmod 755 /appdata
 
-      ynh_script_progression "db migrate the app..."
-      cd db/migrations/sqlite
-      ynh_exec_as_app node migrate.cjs
+      ynh_script_progression "db migrate the app..." 
+      ynh_exec_as_app node db/migrations/sqlite/migrate.cjs
 
 popd
 
