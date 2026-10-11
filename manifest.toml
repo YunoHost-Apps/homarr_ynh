@@ -46,7 +46,7 @@ ram.runtime = "2G"
         autoupdate.asset.amd64 = "^build-debian-amd64.tar.gz$"
 
     [resources.ports]
-        main.default = 3000 
+        main.default = 4000 
         websocket.fixed = 3001
         
     [resources.system_user]
