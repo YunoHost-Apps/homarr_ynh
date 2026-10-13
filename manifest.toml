@@ -39,11 +39,15 @@ ram.runtime = "2G"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/homarr-labs/homarr/releases/download/v2.4.0/build-debian-amd64.tar.gz"
-        sha256 = "daa13c5d67fb706c36b4dc39655355c06d56be4784f8d4015a778b277ed1063e"
+        amd64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.4.0/build-debian-amd64.tar.gz"
+        amd64.sha256 = "daa13c5d67fb706c36b4dc39655355c06d56be4784f8d4015a778b277ed1063e"
+        arm64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.4.0/build-debian-arm64.tar.gz"
+        arm64.sha256 = "f3b9f9fb5d9c5107735be95d155e22b6ef8a591d3bdf8676df99ace1722e495e"
+        
         autoupdate.strategy = "latest_github_tag"
 
         autoupdate.asset.amd64 = "^build-debian-amd64.tar.gz$"
+        autoupdate.asset.arm64 = "^build-debian-arm64.tar.gz$"
 
     [resources.ports]
         main.default = 4000 
