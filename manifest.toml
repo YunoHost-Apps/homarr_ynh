@@ -44,7 +44,7 @@ ram.runtime = "2G"
         arm64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.7.0/build-debian-arm64.tar.gz"
         arm64.sha256 = "5ce685e13976c4a306f99ce302f0f8df03c38010a71120b8301e2e00603ab68e"
         
-        autoupdate.strategy = "latest_github_tag"
+        autoupdate.strategy = "latest_github_release"
 
         autoupdate.asset.amd64 = "^build-debian-amd64.tar.gz$"
         autoupdate.asset.arm64 = "^build-debian-arm64.tar.gz$"
