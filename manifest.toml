@@ -5,7 +5,7 @@ name = "Homarr"
 description.en = "Customizable browser's home page to interact with your homeserver's Docker containers"
 description.fr = "Page d'accueil personnalisable pour interagir avec les conteneurs Docker de votre serveur"
 
-version = "2.7.0~ynh1"
+version = "2.9.1~ynh1"
 
 maintainers = []
 
@@ -39,10 +39,10 @@ ram.runtime = "2G"
 
 [resources]
         [resources.sources.main]
-        amd64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.7.0/build-debian-amd64.tar.gz"
-        amd64.sha256 = "d8776d9fbf567992cf38ff672869b970d7b8d7ea6012f9448f1f8c3f60995042"
-        arm64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.7.0/build-debian-arm64.tar.gz"
-        arm64.sha256 = "5ce685e13976c4a306f99ce302f0f8df03c38010a71120b8301e2e00603ab68e"
+        amd64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.9.1/build-debian-amd64.tar.gz"
+        amd64.sha256 = "62b2ddf2f97dd6221abdf7df6f285ae81d1e430f47254c7206646595c9fd69f9"
+        arm64.url = "https://github.com/homarr-labs/homarr/releases/download/v2.9.1/build-debian-arm64.tar.gz"
+        arm64.sha256 = "c661860e59001fb6da0500c0d5ddeb46772cf083e414e3a4d0ec5fa07270bcd0"
         
         autoupdate.strategy = "latest_github_release"
 
