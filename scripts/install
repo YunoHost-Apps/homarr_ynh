@@ -46,8 +46,8 @@ ynh_script_progression "Building the app..."
 
 pushd $install_dir/db/migrations/sqlite/
 
-      ynh_script_progression "db migrate the app..." 
-      DB_URL=$install_dir/apps/nextjs/db.sqlite node migrate.cjs
+      ynh_script_progression "db migrate the app..."
+      SECRET_ENCRYPTION_KEY=$secret_encryption_key DB_URL=$install_dir/apps/nextjs/db.sqlite node migrate.cjs
       ynh_exec_as_app mkdir ./trusted-certificates
       chmod 755 ./trusted-certificates
 popd
